@@ -1,24 +1,13 @@
-% DATEI: Latex Vorlage zur Anfertigung von Projektarbeiten nach den Vorgaben der DHGE (https://www.dhge.de/DHGE/dam/jcr:6e5d8217-0965-42fe-8982-c7515c12f0b9/Hinweise_und_Empfehlungen_schr_Arb_Technik_Gera_2023.pdf)
-% DATUM: 10.03.25
-
 \iffalse
-########## Vorlagen Inhalt ##########
-
-  + Einhaltung der DHGE Richtlinien (Schriftgröße, Abstände, Seiteneinstellungen, etc.)
-  + Formatierung von Text (Überschrift, Fließtext, Fußnote, Bildbeschreibung, Verzeichnisse)
-  + Formatierung von Bildern (Und Code)
-  + Formatierung von Tabellen
-  + Erstellung / Formattierung von Flowcharts
-  + Eintragungen von Kapiteln, Tabellen, Bildern (Dazu zählt Code und Flowcharts) in das jeweilige Verzeichnis
-  + Seitennummerierung in Römisch (Deckblatt bis Einleitung und Anhang) und Arabisch (Fließtext)
-  + Fußnoten Nummerierung über das ganze Dokument
-  + Erstellung des Deckblatts
-  + Erstellung eines Sperrvermerks (falls nötig)
-  + Erstellung der ehrenwörtlichen Erklärung
-  - Literaturverzeichnis muss händisch geführt werden (nach DHGE Standard)
-  - Anlagen müssen händisch in das Anlagenverzeichnis eingetragen werden
-
 ########## Dokumentation ##########
+
+++++ Allgemein ++++
+
+- DATUM: 20.03.25 (letzte Änderung)
+- DHGE Vorgaben             (https://www.dhge.de/DHGE/dam/jcr:6e5d8217-0965-42fe-8982-c7515c12f0b9/Hinweise_und_Empfehlungen_schr_Arb_Technik_Gera_2023.pdf)
+- VSCode Integration        (https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop)
+- Rechtschreibung (VSCode)  (https://marketplace.visualstudio.com/items?itemName=ltex-plus.vscode-ltex-plus)
+- Gruvbox (W Rizz)          (https://marketplace.visualstudio.com/items?itemName=jdinhlife.gruvbox)
 
 ++++ Installation ++++
   
@@ -28,149 +17,70 @@ Windows (https://miktex.org/)
 
 ++++ Latex ++++
 
-Latex       (https://www.latex-project.org/help/documentation/)
-Ausführung  ("pdflatex $DATEINAME.tex")
-VSCode      (https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop) (https://mg.readthedocs.io/latexmk.html)
+Latex   (https://www.latex-project.org/help/documentation/)
 
-++++ Bilder ++++
-
-Graphicx (https://texdoc.org/serve/graphicx.pdf/0) (https://en.wikibooks.org/wiki/LaTeX/Importing_Graphics)
-
-\ref{fig:layoutExample}
-
-Bilder einfügen:
-\begin{figure}[!ht]
-    \centering
-    %\frame{\includegraphics[width=0.5\textwidth]{Bilder/Bild1.png}}
-    \caption[Architektur des Graylog Clusters]{Architektur des Graylog Clusters\footnotemark}
-    \label{fig:layoutExample}
-\end{figure}
-\footnotetext{[GRAY22]}
-
-++++ Tabellen ++++
-
-Tabularix (https://texdoc.org/serve/tabularx/0)
-
-\ref{fig:TableExample}
-
-\begin{table}[!ht]  
-\centering  
-\begin{tabular}{||c c c c||}    
-\hline   
-Spalte 1 & Spalte 2 & Spalte 3 \\ [0.5ex]
-\hline\hline   
-1 & Inhalt & Inhalt \\    
-2 & Inhalt & Inhalt \\   
-3 & Inhalt & Inhalt \\   
-4 & Inhalt & Inhalt \\   
-5 & Inhalt & Inhalt \\ [1ex]    
-\hline  
-\end{tabular}  
-\caption[$TABELLENNAME]{$TABELLENNAME\footnotemark}
-\label{fig:TableExample}
-\end{table}
-\footnotetext{[REFERENZ]}
-
-++++ Code ++++
-
-Listings (https://texdoc.org/serve/listings.pdf/0)
-
-\ref{fig:CodeExample}
-
-\begin{figure}[!ht]
-\begin{lstlisting}[language=$PROGRAMMIERSPRACHE]
-import random as randintint 
-number = randint(1, 10)
-def main(argv):    
-    return 0;
-\end{lstlisting}
-\caption[$NAMEDESCODES]{$NAMEDESCODES\footnotemark}
-\label{fig:CodeExample}
-\end{figure}
-\footnotetext{[$REFERENZ]}
-
-++++ PDF ++++
-
-pdfpages (https://texdoc.org/serve/pdfpages.pdf/0)
-
-\includepdf[pages={$SEITENZAHL}]{$DATEINAME.pdf}
-
-++++ Mathe ++++
-
-(https://oeis.org/wiki/List_of_LaTeX_mathematical_symbols)
-
-++++ Flowcharts ++++
-
-tikz (https://tikz.dev/)
-BPMN (https://bpmn.io/)
-
-\begin{tikzpicture}[node distance=2cm]
-
-  \node (start) [startstop] {Start};
-  \node (in1) [io, below of=start] {Input};
-  \node (pro1) [process, below of=in1] {Process 1};
-  \node (dec1) [decision, below of=pro1, yshift=-0.5cm] {Decision 1};
-  
-  \node (pro2a) [process, below of=dec1, yshift=-0.5cm] {Process 2a};
-  
-  \node (pro2b) [process, right of=dec1, xshift=2cm] {Process 2b};
-  \node (out1) [io, below of=pro2a] {Output};
-  \node (stop) [startstop, below of=out1] {Stop};
-  
-  \draw [arrow] (start) -- (in1);
-  \draw [arrow] (in1) -- (pro1);
-  \draw [arrow] (pro1) -- (dec1);
-  \draw [arrow] (dec1) -- node[anchor=south] {no} (pro2b);
-  \draw [arrow] (dec1) -- node[anchor=east] {bruh} (pro2a);
-  \draw [arrow] (pro2b) |- (pro1);
-  \draw [arrow] (pro2a) -- (out1);
-  \draw [arrow] (out1) -- (stop);
-  
-\end{tikzpicture}
+##################################
 \fi
 
 % ########## Dokument Einstellungen ########## %
 \documentclass[a4paper, 11pt]{article}
 
 % ##########  Pakete ########## %
+
+% ++++++++ Allgemeines +++++++++ %
+
 \usepackage[ngerman]{babel}
+
+% ++++++++ Text +++++++++ %
+
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage{graphicx}
-\usepackage{float}
-\usepackage{wrapfig}
-\usepackage{subcaption}
-\usepackage{listings}
-\usepackage{geometry}
-\usepackage{setspace}
-\usepackage{titlesec}
-\usepackage{tocloft}
-\usepackage{csquotes}
-\usepackage{fancyhdr}
-\usepackage{tabularx}
 \usepackage[hidelinks]{hyperref}
-\usepackage{enumitem}
-\usepackage{pifont}
-\usepackage{footnote}
-\usepackage{mathptmx}
-\usepackage{arial}
-\usepackage{pdfpages}
-\usepackage{caption}
 \usepackage[nohyperlinks]{acronym}
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{tikz}
-\usepackage{ragged2e}
-\usepackage{tocbasic}
-\usepackage{scrwfile}
-\usepackage[ style=custom-alphabetic-verb]{biblatex}
-\usepackage{dirtree, pdflscape}
+\usepackage[style=custom-alphabetic-verb, url=true, dateabbrev=false]{biblatex}
+\usepackage{setspace, titlesec, tocloft, csquotes, fancyhdr, enumitem, pifont, footnote, arial, caption, amsmath, amssymb, amsthm, amsfonts}
+\usepackage{float, subcaption, mathptmx, ragged2e, tocbasic, scrwfile}
+
+% ++++++++  Grafiken +++++++++ %
+
+\usepackage{wrapfig, graphicx, listings, geometry, tabularx, pdfpages, tikz, dirtree, pdflscape}
 \usetikzlibrary{shapes.geometric, arrows}
 
-% ########## Zitiereinstellung #########%
+% ++++++++  Schriftart +++++++++ %
 
-\addbibresource{Zitate.bib}
-\newcommand\EatDot[1]{}
+\usepackage{arial}
+
+% ########## Flowchart ########## %
+
+\tikzstyle{startstop} = [rectangle, rounded corners, 
+minimum width=3cm, 
+minimum height=1cm,
+text centered, 
+draw=black, 
+fill=red!30]
+
+\tikzstyle{io} = [trapezium, 
+trapezium stretches=true,
+trapezium left angle=70, 
+trapezium right angle=110, 
+minimum width=3cm, 
+minimum height=1cm, text centered, 
+draw=black, fill=blue!30]
+
+\tikzstyle{process} = [rectangle, 
+minimum width=3cm, 
+minimum height=1cm, 
+text centered, 
+draw=black, 
+fill=orange!30]
+
+\tikzstyle{decision} = [diamond, 
+minimum height=1cm, 
+text centered, 
+text width=2.5cm,
+draw=black, 
+fill=green!30]
+\tikzstyle{arrow} = [thick,->,>=stealth]
 
 % ########## Seiten Einstellungen ########## %
 \geometry{a4paper, left=3cm, right=2cm, top=2.5cm, bottom=2.5cm}
@@ -179,8 +89,13 @@ BPMN (https://bpmn.io/)
 \onehalfspacing
 
 % ########## Bilder ########## %
+
 % Beschriftung formatieren
 \captionsetup{justification=raggedright,singlelinecheck=false}
+
+% Rahmen Dicke
+\setlength{\fboxrule}{1pt}
+\setlength{\fboxsep}{0pt}
 
 % ########## Text ########## %
 % Schriftart Arial
@@ -198,17 +113,19 @@ BPMN (https://bpmn.io/)
   {\normalfont\large}
   {\thesubsubsection}{14pt}{}
 
-% ########## Code ########## %
+% ########## Code Snippets ########## %
+
 % Farben Syntax Highlighting
 \definecolor{codeblue}{rgb}{0.0,0.3,0.8}
 \definecolor{codegreen}{rgb}{0.0,0.5,0.0}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
 
-% Zeilennummner, Rahmen, Syntax Highlighting, Leerzeichenbehandlung
-\lstdefinestyle{codestyle}{
+\lstdefinestyle{code}{
+  columns=fullflexible,
   numbers=left,
   xleftmargin=30px,
   frame=single,
+  framerule=1pt,
   framexleftmargin=25px,
   commentstyle=\color{codegreen},
   keywordstyle=\color{codeblue},
@@ -218,47 +135,16 @@ BPMN (https://bpmn.io/)
   keepspaces=true,
   showstringspaces=false,
 }
-\lstset{style=codestyle}
-
-% ########## Flowchart /BPMN Definition ########## %
-\tikzstyle{startstop} = [rectangle, rounded corners, 
-minimum width=3cm, 
-minimum height=1cm,
-text centered, 
-draw=black, 
-fill=red!30]
-
-\tikzstyle{io} = [trapezium, 
-trapezium stretches=true, % A later addition
-trapezium left angle=70, 
-trapezium right angle=110, 
-minimum width=3cm, 
-minimum height=1cm, text centered, 
-draw=black, fill=blue!30]
-
-\tikzstyle{process} = [rectangle, 
-minimum width=3cm, 
-minimum height=1cm, 
-text centered, 
-text width=3cm, 
-draw=black, 
-fill=orange!30]
-
-\tikzstyle{decision} = [diamond, 
-minimum width=3cm, 
-minimum height=1cm, 
-text centered, 
-draw=black, 
-fill=green!30]
-\tikzstyle{arrow} = [thick,->,>=stealth]
+\lstset{style=code}
 
 % ########## Kopf-/ & Fußzeile ########## %
+
 % Textstyle
 \pagestyle{fancy}
 \renewcommand{\headrulewidth}{0pt}
 \fancyhf{}
 \fancyfoot[R]{\thepage}
-\addtolength{\skip\footins}{5pc plus 5pt}
+\addtolength{\skip\footins}{3pc}
 
 % Textstyle Inhaltsverzeichnis
 \fancypagestyle{sxoli1}{
@@ -273,6 +159,7 @@ fill=green!30]
 }
 
 % ########## Verzeichnis Einstellungen ########## %
+
 \renewcommand{\cftpartleader}{\cftdotfill{\cftdotsep}}
 \renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
 \renewcommand{\cftfigaftersnum}{:}
@@ -285,6 +172,84 @@ fill=green!30]
 \setlength{\cftsubsecindent}{0px}
 \setlength{\cftsubsubsecnumwidth}{50px}
 \setlength{\cftsubsubsecindent}{0px}
+
+% ++++++++  Literaturverzeichnis +++++++++ %
+
+\DeclareNameFormat[book]{author}{%
+  \namepartfamily
+  \addcomma\space
+  \namepartgiveni
+  \ifthenelse{\value{listcount}=\value{liststop}}{
+    \addcolon\space
+  }{
+    \addcomma
+  }
+}
+
+\DeclareBibliographyDriver{book}{%
+  \printnames{author}%
+  \newunit\newblock
+  \printfield{title}%
+  \addcomma\space
+  \newunit\newblock
+  \iffieldundef{edition}{}{%
+    \printfield{edition}%
+    \addcomma\space
+  }%
+  \printlist{publisher}%
+  \addcomma\space
+  \newunit\newblock
+  \printlist{location}%
+  \addcomma\space
+  \newunit\newblock
+  \printfield{year}%
+}
+
+\newlength{\fieldlength}
+\newlength{\urlbreaklength}
+\setlength{\urlbreaklength}{10cm}
+\DeclareBibliographyDriver{online}{%
+  \printnames{author}%
+  \addcolon\space
+  \newunit\newblock
+  \printfield{title}%
+  \adddot\space
+  Abgerufen am\space
+  \printfield{note}%
+  \newunit\newblock
+  \space
+  von\addcolon\
+  \settowidth{\fieldlength}{\printfield{url}}
+  \ifthenelse{\fieldlength>\urlbreaklength}{\newline}{}
+  \printfield{url}
+  \addcomma\space
+  \printlist{location}%
+  \newunit\newblock
+  \addcomma\space
+  \printfield{year}%
+}
+
+\DeclareBibliographyDriver{standard}{%
+  \printnames{author}%
+  \addcolon\space
+  \newunit\newblock
+  \printfield{title}%
+  \adddot\space
+  \newunit\newblock
+  \printfield{number}%
+  \addcomma
+  \newunit\newblock
+  \printlist{location}%
+  \addcomma
+  \newunit\newblock
+  \printfield{month}%
+  \space
+  \printfield{year}%
+}
+
+\DeclareFieldFormat[online]{url}{\href{#1}{#1}}
+\DeclareFieldFormat[book]{title}{\mkbibquote{#1}}
+\addbibresource{bib.bib}
 
 % ########## Dokument beginn ########## %
 \begin{document}
@@ -332,7 +297,7 @@ fill=green!30]
   \vspace*{1cm}
 \end{center}
 
-Die vorgelegte Projektarbeit mit dem Titel @title basiert auf internen, vertraulichen Daten und Informationen des Unternehmens DB Systel GmbH.
+Die vorgelegte Projektarbeit mit dem Titel @title basiert auf internen, vertraulichen Daten und Informationen des Unternehmens UNTERNEHMEN.
 
 Diese Projektarbeit darf nur vom Erst- und Zweitgutachter sowie berechtigten Mitgliedern des Prüfungsausschusses eingesehen werden.
 Eine Vervielfältigung und Veröffentlichung der Projektarbeit ist auch auszugsweise nicht erlaubt.
