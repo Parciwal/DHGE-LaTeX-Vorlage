@@ -1,0 +1,118 @@
+\ProvidesFile{custom-alphabetic-verb.bbx}%[2006/03/15 v1.0 biblatex bibliography style]
+
+% This file is based on biblatex bibliography drivers and macroses
+% Modified by S. Khirevich
+
+% =========================== Redefined drivers ==============================
+% for article, book, booklet, inbook, incollection, 
+% inproceedings, manual, phdthesis entry types
+% ============================================================================
+
+\RequireBibliographyStyle{alphabetic-verb}
+
+ 
+\renewbibmacro*{publisher+location+date}{%
+  \iflistundef{location}%
+	{\space o.O.,}
+	{\printlist{location}}%
+  \iflistundef{publisher}
+    {\space o.V.,}
+    {\printlist{publisher}}%
+  \setunit*{\addcomma\space}%
+  \usebibmacro{date}%
+  \newunit}
+
+\renewbibmacro*{maintitle}{%
+  \ifboolexpr{
+    test {\iffieldundef{maintitle}}
+    and
+    test {\iffieldundef{mainsubtitle}}
+  }
+    {}
+    {\printtext[maintitle]{%
+       \printfield{maintitle}%
+       \setunit{\subtitlepunct}%
+       \printfield{mainsubtitle}}%
+     \newunit}%
+  \printfield{maintitleaddon}}
+
+\renewbibmacro*{title}{%
+  \ifboolexpr{
+    test {\iffieldundef{title}}
+    and
+    test {\iffieldundef{subtitle}}
+  }
+    {}
+    {\printtext[title]{%
+       {,,}\printfield{title}%
+       \setunit{\subtitlepunct}%
+       \printfield{subtitle}{``}}%
+     \newunit}%
+  \printfield{titleaddon}}
+
+
+
+\DeclareBibliographyDriver{book}{%
+  \usebibmacro{bibindex}%
+  \usebibmacro{begentry}%
+  \usebibmacro{author/editor+others/translator+others}%
+  \addcolon%
+  \setunit{\printdelim{nametitledelim}}\newblock
+  \usebibmacro{title}%
+  \addcomma \newunit%
+  \printlist{language}%
+  \newunit\newblock
+  \usebibmacro{byauthor}%
+  \newunit\newblock
+  \usebibmacro{byeditor+others}%
+  \newunit\newblock
+  \printfield{edition}%
+  \newunit
+  \iffieldundef{maintitle}
+    {\printfield{volume}%
+     \printfield{part}}
+    {}%
+  \newunit
+  \printfield{volumes}%
+  \newunit\newblock
+  \usebibmacro{series+number}%
+  \newunit\newblock
+  \printfield{note}%
+  \newunit\newblock
+  \usebibmacro{publisher+location+date}%
+  \usebibmacro{finentry}}
+
+% articles
+
+\DeclareFieldFormat[article,inbook,incollection,periodical,misc,legislation,legadminmaterial,jurisdiction,inproceedings,legal]{title}{#1\isdot}
+
+\DeclareBibliographyDriver{article}{%
+  \usebibmacro{bibindex}%
+  \usebibmacro{begentry}%
+  \usebibmacro{author/editor+others/translator+others}%
+  \addcolon%
+  \setunit{\printdelim{nametitledelim}}\newblock
+  \usebibmacro{title}%
+  \addcomma \newunit%
+  \printlist{language}%
+  \newunit\newblock
+  \usebibmacro{byauthor}%
+  \newunit\newblock
+  \usebibmacro{byeditor+others}%
+  \newunit\newblock
+  \printfield{edition}%
+  \newunit
+  \iffieldundef{maintitle}
+    {\printfield{volume}%
+     \printfield{part}}
+    {}%
+  \newunit
+  \printfield{volumes}%
+  \newunit\newblock
+  \usebibmacro{series+number}%
+  \newunit\newblock
+  \printfield{note}%
+  \newunit\newblock
+  \usebibmacro{publisher+location+date}%
+  \usebibmacro{finentry}}
+\endinput

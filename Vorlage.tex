@@ -1,0 +1,849 @@
+% DATEI: Latex Vorlage zur Anfertigung von Projektarbeiten nach den Vorgaben der DHGE (https://www.dhge.de/DHGE/dam/jcr:6e5d8217-0965-42fe-8982-c7515c12f0b9/Hinweise_und_Empfehlungen_schr_Arb_Technik_Gera_2023.pdf)
+% DATUM: 10.03.25
+
+\iffalse
+########## Vorlagen Inhalt ##########
+
+  + Einhaltung der DHGE Richtlinien (Schriftgröße, Abstände, Seiteneinstellungen, etc.)
+  + Formatierung von Text (Überschrift, Fließtext, Fußnote, Bildbeschreibung, Verzeichnisse)
+  + Formatierung von Bildern (Und Code)
+  + Formatierung von Tabellen
+  + Erstellung / Formattierung von Flowcharts
+  + Eintragungen von Kapiteln, Tabellen, Bildern (Dazu zählt Code und Flowcharts) in das jeweilige Verzeichnis
+  + Seitennummerierung in Römisch (Deckblatt bis Einleitung und Anhang) und Arabisch (Fließtext)
+  + Fußnoten Nummerierung über das ganze Dokument
+  + Erstellung des Deckblatts
+  + Erstellung eines Sperrvermerks (falls nötig)
+  + Erstellung der ehrenwörtlichen Erklärung
+  - Literaturverzeichnis muss händisch geführt werden (nach DHGE Standard)
+  - Anlagen müssen händisch in das Anlagenverzeichnis eingetragen werden
+
+########## Dokumentation ##########
+
+++++ Installation ++++
+  
+MacOS   (https://www.tug.org/mactex/)
+Linux   (https://wiki.debian.org/Latex)
+Windows (https://miktex.org/)
+
+++++ Latex ++++
+
+Latex       (https://www.latex-project.org/help/documentation/)
+Ausführung  ("pdflatex $DATEINAME.tex")
+VSCode      (https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop) (https://mg.readthedocs.io/latexmk.html)
+
+++++ Bilder ++++
+
+Graphicx (https://texdoc.org/serve/graphicx.pdf/0) (https://en.wikibooks.org/wiki/LaTeX/Importing_Graphics)
+
+\ref{fig:layoutExample}
+
+Bilder einfügen:
+\begin{figure}[!ht]
+    \centering
+    %\frame{\includegraphics[width=0.5\textwidth]{Bilder/Bild1.png}}
+    \caption[Architektur des Graylog Clusters]{Architektur des Graylog Clusters\footnotemark}
+    \label{fig:layoutExample}
+\end{figure}
+\footnotetext{[GRAY22]}
+
+++++ Tabellen ++++
+
+Tabularix (https://texdoc.org/serve/tabularx/0)
+
+\ref{fig:TableExample}
+
+\begin{table}[!ht]  
+\centering  
+\begin{tabular}{||c c c c||}    
+\hline   
+Spalte 1 & Spalte 2 & Spalte 3 \\ [0.5ex]
+\hline\hline   
+1 & Inhalt & Inhalt \\    
+2 & Inhalt & Inhalt \\   
+3 & Inhalt & Inhalt \\   
+4 & Inhalt & Inhalt \\   
+5 & Inhalt & Inhalt \\ [1ex]    
+\hline  
+\end{tabular}  
+\caption[$TABELLENNAME]{$TABELLENNAME\footnotemark}
+\label{fig:TableExample}
+\end{table}
+\footnotetext{[REFERENZ]}
+
+++++ Code ++++
+
+Listings (https://texdoc.org/serve/listings.pdf/0)
+
+\ref{fig:CodeExample}
+
+\begin{figure}[!ht]
+\begin{lstlisting}[language=$PROGRAMMIERSPRACHE]
+import random as randintint 
+number = randint(1, 10)
+def main(argv):    
+    return 0;
+\end{lstlisting}
+\caption[$NAMEDESCODES]{$NAMEDESCODES\footnotemark}
+\label{fig:CodeExample}
+\end{figure}
+\footnotetext{[$REFERENZ]}
+
+++++ PDF ++++
+
+pdfpages (https://texdoc.org/serve/pdfpages.pdf/0)
+
+\includepdf[pages={$SEITENZAHL}]{$DATEINAME.pdf}
+
+++++ Mathe ++++
+
+(https://oeis.org/wiki/List_of_LaTeX_mathematical_symbols)
+
+++++ Flowcharts ++++
+
+tikz (https://tikz.dev/)
+BPMN (https://bpmn.io/)
+
+\begin{tikzpicture}[node distance=2cm]
+
+  \node (start) [startstop] {Start};
+  \node (in1) [io, below of=start] {Input};
+  \node (pro1) [process, below of=in1] {Process 1};
+  \node (dec1) [decision, below of=pro1, yshift=-0.5cm] {Decision 1};
+  
+  \node (pro2a) [process, below of=dec1, yshift=-0.5cm] {Process 2a};
+  
+  \node (pro2b) [process, right of=dec1, xshift=2cm] {Process 2b};
+  \node (out1) [io, below of=pro2a] {Output};
+  \node (stop) [startstop, below of=out1] {Stop};
+  
+  \draw [arrow] (start) -- (in1);
+  \draw [arrow] (in1) -- (pro1);
+  \draw [arrow] (pro1) -- (dec1);
+  \draw [arrow] (dec1) -- node[anchor=south] {no} (pro2b);
+  \draw [arrow] (dec1) -- node[anchor=east] {bruh} (pro2a);
+  \draw [arrow] (pro2b) |- (pro1);
+  \draw [arrow] (pro2a) -- (out1);
+  \draw [arrow] (out1) -- (stop);
+  
+\end{tikzpicture}
+\fi
+
+% ########## Dokument Einstellungen ########## %
+\documentclass[a4paper, 11pt]{article}
+
+% ##########  Pakete ########## %
+\usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{subcaption}
+\usepackage{listings}
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage{tocloft}
+\usepackage{csquotes}
+\usepackage{fancyhdr}
+\usepackage{tabularx}
+\usepackage[hidelinks]{hyperref}
+\usepackage{enumitem}
+\usepackage{pifont}
+\usepackage{footnote}
+\usepackage{mathptmx}
+\usepackage{arial}
+\usepackage{pdfpages}
+\usepackage{caption}
+\usepackage[nohyperlinks]{acronym}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usepackage{ragged2e}
+\usepackage{tocbasic}
+\usepackage{scrwfile}
+\usepackage[ style=custom-alphabetic-verb]{biblatex}
+\usetikzlibrary{shapes.geometric, arrows}
+
+% ########## Zitiereinstellung #########%
+
+\addbibresource{Zitate.bib}
+\newcommand\EatDot[1]{}
+
+% ########## Seiten Einstellungen ########## %
+\geometry{a4paper, left=3cm, right=2cm, top=2.5cm, bottom=2.5cm}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+\onehalfspacing
+
+% ########## Bilder ########## %
+% Beschriftung formatieren
+\captionsetup{justification=raggedright,singlelinecheck=false}
+
+% ########## Text ########## %
+% Schriftart Arial
+\renewcommand{\sfdefault}{ua1}
+\renewcommand{\familydefault}{\sfdefault}
+
+% Überschriften nicht fett
+\titleformat{\section}
+  {\normalfont\Large}
+  {\thesection}{16pt}{}
+\titleformat{\subsection}
+  {\normalfont\large}
+  {\thesubsection}{14pt}{}
+\titleformat{\subsubsection}
+  {\normalfont\large}
+  {\thesubsubsection}{14pt}{}
+
+% ########## Code ########## %
+% Farben Syntax Highlighting
+\definecolor{codeblue}{rgb}{0.0,0.3,0.8}
+\definecolor{codegreen}{rgb}{0.0,0.5,0.0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+
+% Zeilennummner, Rahmen, Syntax Highlighting, Leerzeichenbehandlung
+\lstdefinestyle{codestyle}{
+  numbers=left,
+  xleftmargin=30px,
+  frame=single,
+  framexleftmargin=25px,
+  commentstyle=\color{codegreen},
+  keywordstyle=\color{codeblue},
+  numberstyle=\tiny\color{codegray},
+  basicstyle=\ttfamily\footnotesize,
+  captionpos=b,
+  keepspaces=true,
+  showstringspaces=false,
+}
+\lstset{style=codestyle}
+
+% ########## Flowchart /BPMN Definition ########## %
+\tikzstyle{startstop} = [rectangle, rounded corners, 
+minimum width=3cm, 
+minimum height=1cm,
+text centered, 
+draw=black, 
+fill=red!30]
+
+\tikzstyle{io} = [trapezium, 
+trapezium stretches=true, % A later addition
+trapezium left angle=70, 
+trapezium right angle=110, 
+minimum width=3cm, 
+minimum height=1cm, text centered, 
+draw=black, fill=blue!30]
+
+\tikzstyle{process} = [rectangle, 
+minimum width=3cm, 
+minimum height=1cm, 
+text centered, 
+text width=3cm, 
+draw=black, 
+fill=orange!30]
+
+\tikzstyle{decision} = [diamond, 
+minimum width=3cm, 
+minimum height=1cm, 
+text centered, 
+draw=black, 
+fill=green!30]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+
+% ########## Kopf-/ & Fußzeile ########## %
+% Textstyle
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhf{}
+\fancyfoot[R]{\thepage}
+\addtolength{\skip\footins}{5pc plus 5pt}
+
+% Textstyle Inhaltsverzeichnis
+\fancypagestyle{sxoli1}{
+  \fancyhf{}
+  \pagenumbering{Roman}
+  \rfoot{\thepage}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+	\fancypagestyle{plain}{
+    \rfoot{\thepage}
+	}
+}
+
+% ########## Verzeichnis Einstellungen ########## %
+\renewcommand{\cftpartleader}{\cftdotfill{\cftdotsep}}
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+\renewcommand{\cftfigaftersnum}{:}
+\renewcommand{\cfttabaftersnum}{:}
+\renewcommand{\cftsecfont}{}
+\renewcommand{\cftsecpagefont}{}
+\setlength{\cftsecnumwidth}{50px}
+\setlength{\cftsecindent}{0px}
+\setlength{\cftsubsecnumwidth}{50px}
+\setlength{\cftsubsecindent}{0px}
+\setlength{\cftsubsubsecnumwidth}{50px}
+\setlength{\cftsubsubsecindent}{0px}
+
+% ########## Dokument beginn ########## %
+\begin{document}
+
+% Keine Seitenzahlen auf Deckblatt und Sperrvermerk
+\pagenumbering{gobble}
+
+% ########## Deckblatt ########## %
+{\fontfamily{ptm}\selectfont
+\begin{center}
+  \textbf{THEMA}
+  \vspace*{1cm}
+\end{center}
+\begin{center}
+  \begin{tabular}{ r p{10cm} }
+    Projektarbeit & {\LARGE\bf\hspace{0.15cm}I\hspace{1.225cm}II\hspace{1.05cm}III\hspace{1cm}IV}\\
+    Nr. & {\LARGE\bf $\boxtimes$\hspace{1cm}$\square$\hspace{1cm}$\square$\hspace{1cm}$\square$}\\[1.5cm]
+    & DATUM \\[-0.5cm]
+    vorgelegt am: & \hrulefill \\[1cm]
+    & VOR- UND NACHNAME \\[-0.5cm]
+    von: & \hrulefill \\[1cm]
+    & NUMMER \\[-0.5cm]
+    Matrikelnr: & \hrulefill \\[1cm]
+    & CAMPUS \\[-0.5cm]
+    DHGE Campus: & \hrulefill \\[1cm]
+    & BEREICH \\[-0.5cm]
+    Studienbereich & \hrulefill \\[1cm]
+    & JAHR \\[-0.5cm]
+    Studiengang: & \hrulefill \\[1cm]
+    & KURS \\[-0.5cm]
+    Kurs: & \hrulefill \\[1cm]
+    & BETRIEB \\[-0.5cm]
+    Ausbildungsstätte: & \hrulefill \\[1cm]
+    & BETREUER \\[-0.5cm] 				
+    Betreuer: & \hrulefill \\[1cm]
+    & \hrulefill \\[1cm]
+ \end{tabular}
+\end{center}
+\newpage
+}
+% ########## Sperrvermerk ########## %
+\begin{center}
+  \vspace*{5.5cm}
+  {\LARGE\bf Sperrvermerk}
+  \vspace*{1cm}
+\end{center}
+
+Die vorgelegte Projektarbeit mit dem Titel @title basiert auf internen, vertraulichen Daten und Informationen des Unternehmens DB Systel GmbH.
+
+Diese Projektarbeit darf nur vom Erst- und Zweitgutachter sowie berechtigten Mitgliedern des Prüfungsausschusses eingesehen werden.
+Eine Vervielfältigung und Veröffentlichung der Projektarbeit ist auch auszugsweise nicht erlaubt.
+
+Die Vervielfältigung und Veröffentlichung der Projektarbeit sowie die Einsichtnahme durch Dritte bedarf der ausdrücklichen
+Zustimmung des Verfassers und des Unternehmens.
+\newpage
+
+% Römische Seitenzahl
+\pagenumbering{Roman}
+
+% ########## Inhaltsverzeichnis ########## %
+\phantomsection
+\section*{Inhaltsverzeichnis \hfill Seite}
+\pagestyle{sxoli1}
+\renewcommand\contentsname{}
+\tableofcontents
+Ehrenwörtliche Erklärung
+\newpage
+
+% ########## Abbildungsverzeichnis ########## %
+\phantomsection
+\section*{Abbildungsverzeichnis \hfill Seite}
+\renewcommand\listfigurename{}
+\setlength{\cftfigindent}{0em}
+\setlength{\cftfignumwidth}{6.5em}
+\renewcommand{\cftfigpresnum}{Abbildung }
+\addcontentsline{toc}{section}{Abbildungsverzeichnis}
+\listoffigures
+\newpage
+
+% ########## Tabellenverzeichnis ########## %
+\phantomsection
+\section*{Tabellenverzeichnis \hfill Seite}
+\renewcommand\listtablename{}
+\setlength{\cfttabindent}{0em}
+\setlength{\cfttabnumwidth}{5.5em}
+\renewcommand{\cfttabpresnum}{Tabelle }
+\addcontentsline{toc}{section}{Tabellenverzeichnis}
+\listoftables
+\newpage
+
+% ########## Abkürzungsverzeichnis ########## %
+\phantomsection
+\section*{Abkürzungsverzeichnis}
+\addcontentsline{toc}{section}{Abkürzungsverzeichnis}
+\begin{acronym}[*************]
+  \acro{DHGE}{Duale Hochschule Gera Eisenach}
+  \acro{MD}{Markdown}
+  \acro{WYSIWYG}{,,What you see is what you get``}
+  \acro{VM}{Virtuelle Maschine}
+  \acro{Doku}{Dokumenation}
+  \acro{ORM}{Objektrelationalen Abbildungsmechanismus}
+  \acro{html}{Hypertext Markup Language}
+  \acro{API}{Application Programming Interfaces}
+  \acro{URL}{Uniform Resource Locator}
+ \end{acronym}
+\newpage
+
+% Falls Plural abwechend
+\acrodefplural{VM}[VMs]{Virtuelle Maschinen}
+
+% Letzte Seite mit römischer Seitenzahl speichern & Arabische Zahlen verwenden
+\newcounter{savepage}
+\setcounter{savepage}{\number\value{page}}
+\pagenumbering{arabic}
+
+
+% ########## Text ########## %
+
+\section{Einleitung}
+
+\subsection{Fließtext}
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+
+\textit{kursiv text}    \textbf{fetter text}
+
+\newpage
+
+\subsection{Zitate}
+Ein direktes Zitat "`ist ein Zitat das sehr direkt ist."'\footnotemark
+\footnotetext{\autocite{DIN.2008}}
+
+dolore magna aliquyam erat, sed diam voluptua.\footnotemark
+\footnotetext{Vgl. \autocite{Fowler.2006} \autocite{GitLab.2025}} 
+
+est Lorem ipsum dolor sit amet.\footnotemark
+\footnotetext{Ebd.}
+
+\subsection{Formeln und mathematische Darstellung}
+
+\subsubsection{Mathematische Grundsymbole}
+
+\href{https://oeis.org/wiki/List_of_LaTeX_mathematical_symbols}{Bedienungsanleitung}
+
++
+-
+$\div \ast \times$
+
+\subsubsection{Griechische Symbole}
+
+\href{https://oeis.org/wiki/List_of_LaTeX_mathematical_symbols}{Bedienungsanleitung}
+
+$\alpha$
+$\pi$
+$\Delta$
+$\Theta$
+$\vartheta$
+$\mu$
+$\Lambda$
+
+\subsubsection{Relations Operatoren}
+
+< > =
+$\nless$
+$\ngtr$
+$\parallel$
+$\leq$
+$\geq$
+$\ngeqslant$
+$\perp$
+$\subset$
+$\not\supset$
+$\nparallel$
+$\subseteq$
+$\approx$
+$\sim$
+$\neq$
+$\mid$
+
+\subsubsection{Mathematische Notation}
+
+\href{https://oeis.org/wiki/List_of_LaTeX_mathematical_symbols}{Bedienungsanleitung}
+
+$\mathbb{R}$
+$\mathbb{G}$
+$\mathbb{C}$
+$\in$
+$\notin$
+$\exists$
+$\overline{ab}$
+$f'(x)$
+
+\subsubsection{Binär Operatoren}
+
+\href{https://oeis.org/wiki/List_of_LaTeX_mathematical_symbols}{Bedienungsanleitung}
+
+$\neg$ 
+$\lor$
+$\land$
+
+\newpage
+
+\subsubsection{Bruch}
+
+\href{http://namsu.de/Extra/befehle/Bruch.pdf}{Bedienungsanleitung}
+
+Innerhalb eines Textes $\frac{100}{(x \times y)^2}$ diese Formel.
+
+\[{\frac{100}{(x \times y)^2}}\]
+
+\subsubsection{Wurzeln ziehen}
+
+\href{https://www.namsu.de/Mathematik/1-6-2.html}{Bedienungsanleitung}
+
+Innerhalb eines Textes $\sqrt[n]{\frac{100}{(x \times y)^2}}$ diese Formel.
+
+\[\sqrt[n]{\frac{100}{(x \times y)^2}}\]
+
+\subsubsection{Summenzeichen}
+
+\href{https://de.overleaf.com/learn/latex/Integrals%2C_sums_and_limits}{Bedienungsanleitung}
+
+Innerhalb eines Textes $\sum_{n=0}^{\infty}\frac{10}{n^2+1}$ eine Formel.
+
+\[\sum_{n=0}^{\infty}\frac{10}{n^2+1}\]
+
+\subsubsection{Integral}
+
+\href{https://de.overleaf.com/learn/latex/Integrals%2C_sums_and_limits}{Bedienungsanleitung}
+
+Innerhalb eines Textes $\int_sx^2*\frac{20}{dx}$ eine Formel.
+
+\[\int_sx^2*\frac{20}{dx}\]
+
+\[\iint_{0}^1sx^2\frac{20}{dx}\]
+
+\newpage
+
+\subsubsection{Limes}
+
+\href{https://de.overleaf.com/learn/latex/Integrals%2C_sums_and_limits}{Bedienungsanleitung}
+
+Innerhalb eines Textes $lim_{x\to \infty} x$ eine Formel.
+
+\[lim_{x\to \infty} x\]
+
+\subsubsection{Matrix}
+
+\href{https://www.overleaf.com/learn/latex/Matrices}{Bedienungsanleitung}
+
+Matrix im Text,
+  $\big(\begin{smallmatrix}
+  a & b\\
+  c & d
+\end{smallmatrix}\big)$
+passt.
+
+$\begin{pmatrix}
+  1 & 1 & 1\\
+  0 & 0 & 1\\
+  1 & 0 & 1
+\end{pmatrix}$
+
+\subsubsection{Fälle}
+
+\href{https://www.overleaf.com/latex/examples/cases/nndqpbymnchn}{Bedienungsanleitung}
+
+\[
+|x|=
+\begin{cases}
+x & \text{ für } x < 0\\
+x & \text{ für } x > 100\\
+0 & \text{ für } x = 0
+\end{cases}
+\]
+
+\subsubsection{Mathe in mehreren Zeilen}
+
+\begin{align}
+  f(x)&=\sqrt[3]{\frac{x}{z^2}} &f(x)&=x^2+bx+q\\
+  h(x)&=\frac{n^2}{\sqrt{x-2}} &h(x)&=\sqrt{n}\ast n+f(x)^2\notag
+\end{align}
+
+\subsection{Abkürzungen}
+
+\href{https://www.namsu.de/Extra/pakete/Acronym.html}{Bedienungsanleitung (acronym)}
+
+Normal:                                   \ac{DHGE}
+
+Direkte Abkürzung:                        \acs{DHGE}
+
+Direkte Langform:                         \acl{DHGE}
+
+Direkt Langform + Abkürzung:              \acf{DHGE}
+
+Keine Langform + Plural:                  \acp{DHGE}
+
+Direkte Kurzform + Plural:                \acsp{DHGE}
+
+Direkte Langform + Plural:                \acfp{DHGE}
+
+Direkte Langform + Abkürzung + Plural:    \aclp{DHGE}
+
+Abweichender Plural:                      \acp{VM}
+\newpage
+
+% ########## Grafiken ########## %
+
+\subsection{Grafiken}
+
+\subsubsection{Bilder}
+
+\href{https://texdoc.org/serve/graphicx.pdf/0}{Bedienungsanleitung (Graphicx)}
+\href{https://en.wikibooks.org/wiki/LaTeX/Importing_Graphics}{Bedienungsanleitung (Graphicx)}
+
+\par\medskip
+\begin{figure}[!ht]
+    \centering
+    \frame{\includegraphics[width=\textwidth]{example-image-a}}
+    \caption[Titel in Abbildungsverzeichnis]{Titel\footnotemark}
+    \label{fig:ExampleImage}
+\end{figure}
+\footnotetext{QUELLE}
+\newpage
+
+\subsubsection{Bilder neben Text}
+
+\href{https://ctan.ebinger.cc/tex-archive/macros/latex/contrib/wrapfig/wrapfig-doc.pdf}{Bedienungsanleitung (wrapfig)}
+
+\par\medskip
+\begin{wrapfigure}[11]{r}[0pt]{5cm}
+    \centering
+    \frame{\includegraphics[width=0.3\textwidth]{example-grid-100x100pt}}
+    \caption[Titel in Abbildungsverzeichnis (wrapfig)]{Titel\footnotemark}
+    \label{fig:ExampleFloatImage}
+\end{wrapfigure}
+\footnotetext{QUELLE}
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+\newpage
+
+\subsubsection{Flussdiagramm nach DIN 66001}
+
+\href{https://tikz.dev/}{Bedienungsanleitung (tikz)}
+
+\par\medskip
+\begin{figure}[!ht]
+  \centering
+    \begin{tikzpicture}[node distance=2cm]
+      \node (start) [startstop] {Start};
+      \node (in1) [io, below of=start] {Input};
+      \node (pro1) [process, below of=in1] {Process 1};
+      \node (dec1) [decision, below of=pro1, yshift=-0.5cm] {Decision 1};
+      \node (pro2a) [process, below of=dec1, yshift=-0.5cm] {Process 2a};
+      \node (pro2b) [process, right of=dec1, xshift=2cm] {Process 2b};
+      \node (out1) [io, below of=pro2a] {Output};
+      \node (stop) [startstop, below of=out1] {Stop};
+      \draw [arrow] (start) -- (in1);
+      \draw [arrow] (in1) -- (pro1);
+      \draw [arrow] (pro1) -- (dec1);
+      \draw [arrow] (dec1) -- node[anchor=south] {no} (pro2b);
+      \draw [arrow] (dec1) -- node[anchor=east] {yes} (pro2a);
+      \draw [arrow] (pro2b) |- (pro1);
+      \draw [arrow] (pro2a) -- (out1);
+      \draw [arrow] (out1) -- (stop);
+    \end{tikzpicture}
+  \caption[Titel in Abbildungsverzeichnis(Flowchart)]{Titel}
+  \label{fig:ExampleFlowchart}
+\end{figure}
+\newpage
+
+\subsubsection{Code einfügen}
+
+\href{https://texdoc.org/serve/listings.pdf/0}{Bedienungsanleitung (listings)}
+
+\begin{figure}[!ht]
+\begin{lstlisting}[language=Python]
+import random as randintint 
+number = randint(1, 10)
+def main(argv):
+    return 0
+\end{lstlisting}
+\caption[Titel in Abbildungsverzeichnis (Code)]{Titel\footnotemark}
+\label{fig:ExampleCode}
+\end{figure}
+\footnotetext{QUELLE}
+\newpage
+
+\subsubsection{Tabellen}
+
+\href{https://texdoc.org/serve/tabularx/0}{Bedienungsanleitung (tabularx)}
+
+\begin{table}[!ht]
+\begin{tabular}{||c c c c||}
+\hline
+Spalte 1 & Spalte 2 & Spalte 3 \\ [0.5ex]
+\hline\hline
+1 & Inhalt & Inhalt \\
+2 & Inhalt & Inhalt \\
+3 & Inhalt & Inhalt \\
+4 & Inhalt & Inhalt \\
+5 & Inhalt & Inhalt \\ [1ex]
+\hline
+\end{tabular}
+\caption[Tabellenname im Tabellenverzeichnis]{Tabellentitel\footnotemark}
+\label{table:ExampleTable}
+\end{table}
+\footnotetext{QUELLE}
+\newpage
+
+\subsubsection{Ordnerstrukturen}
+
+\href{https://de.mirrors.cicku.me/ctan/macros/generic/dirtree/dirtree.pdf}{Bedienungsanleitung (dirtree)}
+
+\par\medskip
+\begin{figure}[!ht]
+  \fbox{
+  \begin{minipage}{7cm}
+  \dirtree{%
+.1 Ordner A.
+.2 Unterordner B.
+.3 Datei D1.
+.3 Datei D2.
+.2 Unterordner B1.
+.3 Datei DD1.
+.4 $...$.
+.2 Unterordner C.
+.3 Datei D3.
+.3 Datei D4.
+.2 $...$.
+}
+\end{minipage}
+}
+\caption[Ordnerstruktur im Abbildungsverzeichnis]{Ordnerstruktur}
+\label{fig:JSONStruct}
+\end{figure}
+\newpage
+
+\subsubsection{Verweisen auf Grafiken}
+
+Siehe Abbildung \ref{fig:ExampleImage}
+
+Siehe Abbildung \ref{fig:ExampleFloatImage}
+
+Siehe Abbildung \ref{fig:ExampleCode} Z. 2ff.
+
+Siehe Abbildung \ref{fig:ExampleFlowchart}
+
+Siehe Tabelle \ref{table:ExampleTable}
+
+Siehe im Anhang \ref{Anhang:1}
+\newpage
+
+\subsection{PDF einfügen}
+
+\href{https://texdoc.org/serve/pdfpages.pdf/0}{Bedienungsanleitung (pdfpages)}
+%\includepdf[pages={SEITENZAHL}]{DATEINAME.pdf}
+\newpage
+
+\subsection{Vorlagen}
+
+\href{https://de.overleaf.com/latex/templates}{Overleaf Vorlagen}
+
+\newpage
+
+% ########## Literaturverzeichnis ########## %
+
+% Römische Seitenzahlen fortsetzen
+\pagenumbering{Roman}
+\setcounter{page}{\value{savepage}}
+
+\phantomsection
+\section*{Literaturverzeichnis}
+
+\addcontentsline{toc}{section}{Literaturverzeichnis}
+
+\printbibliography
+
+\newpage
+% ########## Anlagen ########## %
+\phantomsection
+\section*{Anlagenverzeichnis}
+\addcontentsline{toc}{section}{Anlagenverzeichnis}
+\captionsetup[figure]{list=no}
+\setcounter{figure}{0}
+\renewcommand{\figurename}{Anhang}
+\renewcommand{\thefigure}{\arabic{figure}}
+
+% Anlagenverzeichnis (muss manuell geführt werden)
+\renewcommand\tabularxcolumn[1]{b{#1}}
+\renewcommand*{\arraystretch}{1.5}
+\begin{tabularx}{\textwidth}{Xr}
+\multicolumn{2}{c}{}\\
+Anhang 1: \nameref{Anhang:1} \dotfill&\pageref{Anhang:1}\\
+Anhang 2: \nameref{Anhang:2} \dotfill&\pageref{Anhang:2}\\
+Anhang 3: \nameref{Anhang:3} \dotfill&\pageref{Anhang:3}\\
+\end{tabularx}
+\newpage
+
+% ########## Anlage 1 ########## %
+
+\begin{figure}[!ht]
+  \caption[Titel im Anlagenverzeichnis Anlage 1]{Titel Anlage 1}
+  \label{Anhang:1}
+  \centering
+  \frame{\includegraphics[angle=-90, width=\textwidth]{example-image-a}}
+\end{figure}
+\newpage
+
+% ########## Anlage 2 ########## %
+
+\begin{landscape}
+  \begin{figure}[!ht]
+    \caption[Titel im Anlagenverzeichnis Anlage 2]{Titel Anlage 2}
+    \label{Anhang:2}
+    \centering
+    \frame{\includegraphics[width=1.2\textwidth]{example-image-a}}
+  \end{figure}
+  \end{landscape}
+  \newpage
+
+% ########## Anlage 3 ########## %
+
+\begin{figure}[!ht]
+  \caption[Titel im Anlagenverzeichnis Anlage 3]{Titel Anlage 3}
+  \label{Anhang:3}
+  \centering
+  \frame{\includegraphics[angle=-90, width=\textwidth]{example-image-a}}
+\end{figure}
+\newpage
+
+% ########## Ehrenwörtliche Erklärung ########## %
+
+\begin{center}
+  \textbf{Ehrenwörtliche Erklärung}
+\end{center}
+\vspace*{1.5cm}
+Ich erkläre hiermit ehrenwörtlich,
+\begin{flushleft}
+  \begin{enumerate}[leftmargin=0.5cm]
+    \item 	dass ich meine {Projektarbeit}
+    mit dem Thema:  \\
+    \vspace*{1cm}
+            \textbf{TITEL} \\
+    \vspace*{1cm}
+            ohne fremde Hilfe angefertigt habe, \\
+    \item	dass ich die Übernahme wörtlicher Zitate aus der Literatur sowie die Verwendung der
+            Gedanken anderer Autoren an den entsprechenden Stellen innerhalb der Arbeit gekennzeichnet habe und  \\
+    \item	dass ich meine {Projektarbeit}
+    bei keiner anderen Prüfung vorgelegt habe. \\
+    \vspace*{1cm}
+  \end{enumerate}
+  \noindent
+Ich bin mir bewusst, dass eine falsche Erklärung rechtliche Folgen haben wird.
+\end{flushleft}
+\vspace*{1cm}
+\begin{tabular} {lrl}
+  \hspace{5.5cm} & \hspace{3cm} & \hspace{5.5cm} \\
+  \hrulefill & & \hrulefill \\
+  Ort, Datum & & Unterschrift
+\end{tabular}
+\vspace*{\fill}
+\end{document}
