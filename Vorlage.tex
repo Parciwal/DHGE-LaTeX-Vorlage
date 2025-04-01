@@ -251,45 +251,45 @@ fill=green!30]
 \DeclareFieldFormat[book]{title}{\mkbibquote{#1}}
 \addbibresource{bib.bib}
 
-% ########## Dokument beginn ########## %
+% ########## Dokument Beginn ########## %
 \begin{document}
 
 % Keine Seitenzahlen auf Deckblatt und Sperrvermerk
 \pagenumbering{gobble}
 
 % ########## Deckblatt ########## %
-{\fontfamily{ptm}\selectfont
 \begin{center}
-  \textbf{THEMA}
+  \textbf{Meine Projektarbeit}
   \vspace*{1cm}
 \end{center}
 \begin{center}
   \begin{tabular}{ r p{10cm} }
     Projektarbeit & {\LARGE\bf\hspace{0.15cm}I\hspace{1.225cm}II\hspace{1.05cm}III\hspace{1cm}IV}\\
     Nr. & {\LARGE\bf $\boxtimes$\hspace{1cm}$\square$\hspace{1cm}$\square$\hspace{1cm}$\square$}\\[1.5cm]
-    & DATUM \\[-0.5cm]
+    & 02.05.25 \\[-0.5cm]
     vorgelegt am: & \hrulefill \\[1cm]
-    & VOR- UND NACHNAME \\[-0.5cm]
+    & Musterman, Max \\[-0.5cm]
     von: & \hrulefill \\[1cm]
-    & NUMMER \\[-0.5cm]
+    & G000000PI \\[-0.5cm]
     Matrikelnr: & \hrulefill \\[1cm]
-    & CAMPUS \\[-0.5cm]
+    & Gera \\[-0.5cm]
     DHGE Campus: & \hrulefill \\[1cm]
-    & BEREICH \\[-0.5cm]
+    & Technik \\[-0.5cm]
     Studienbereich & \hrulefill \\[1cm]
-    & JAHR \\[-0.5cm]
+    & Komplexe Informatik \\[-0.5cm]
     Studiengang: & \hrulefill \\[1cm]
-    & KURS \\[-0.5cm]
+    & KIA89 \\[-0.5cm]
     Kurs: & \hrulefill \\[1cm]
-    & BETRIEB \\[-0.5cm]
+    & Capgemini Deutschland GmbH \\[-0.5cm]
     Ausbildungsstätte: & \hrulefill \\[1cm]
-    & BETREUER \\[-0.5cm] 				
+    & Musterman, Max \\[-0.5cm]
     Betreuer: & \hrulefill \\[1cm]
+    & Musterman, Max \\[-0.5cm]
     & \hrulefill \\[1cm]
  \end{tabular}
 \end{center}
 \newpage
-}
+
 % ########## Sperrvermerk ########## %
 \begin{center}
   \vspace*{5.5cm}
@@ -297,7 +297,7 @@ fill=green!30]
   \vspace*{1cm}
 \end{center}
 
-Die vorgelegte Projektarbeit mit dem Titel @title basiert auf internen, vertraulichen Daten und Informationen des Unternehmens UNTERNEHMEN.
+Die vorgelegte Projektarbeit mit dem Titel TITEL basiert auf internen, vertraulichen Daten und Informationen des Unternehmens BETRIEB.
 
 Diese Projektarbeit darf nur vom Erst- und Zweitgutachter sowie berechtigten Mitgliedern des Prüfungsausschusses eingesehen werden.
 Eine Vervielfältigung und Veröffentlichung der Projektarbeit ist auch auszugsweise nicht erlaubt.
@@ -311,7 +311,7 @@ Zustimmung des Verfassers und des Unternehmens.
 
 % ########## Inhaltsverzeichnis ########## %
 \phantomsection
-\section*{Inhaltsverzeichnis \hfill Seite}
+\section*{Inhaltsverzeichnis}
 \pagestyle{sxoli1}
 \renewcommand\contentsname{}
 \tableofcontents
@@ -320,7 +320,7 @@ Ehrenwörtliche Erklärung
 
 % ########## Abbildungsverzeichnis ########## %
 \phantomsection
-\section*{Abbildungsverzeichnis \hfill Seite}
+\section*{Abbildungsverzeichnis}
 \renewcommand\listfigurename{}
 \setlength{\cftfigindent}{0em}
 \setlength{\cftfignumwidth}{6.5em}
@@ -331,7 +331,7 @@ Ehrenwörtliche Erklärung
 
 % ########## Tabellenverzeichnis ########## %
 \phantomsection
-\section*{Tabellenverzeichnis \hfill Seite}
+\section*{Tabellenverzeichnis}
 \renewcommand\listtablename{}
 \setlength{\cfttabindent}{0em}
 \setlength{\cfttabnumwidth}{5.5em}
@@ -344,27 +344,22 @@ Ehrenwörtliche Erklärung
 \phantomsection
 \section*{Abkürzungsverzeichnis}
 \addcontentsline{toc}{section}{Abkürzungsverzeichnis}
-\begin{acronym}[*************]
+\begin{acronym}[**********]
   \acro{DHGE}{Duale Hochschule Gera Eisenach}
-  \acro{MD}{Markdown}
-  \acro{WYSIWYG}{,,What you see is what you get``}
+  \acro{SQL}{Structured Query Language}
+  \acro{Bash}{Bourne-again shell}
+  \acro{JDK}{Java Development Kit}
   \acro{VM}{Virtuelle Maschine}
-  \acro{Doku}{Dokumenation}
-  \acro{ORM}{Objektrelationalen Abbildungsmechanismus}
-  \acro{html}{Hypertext Markup Language}
-  \acro{API}{Application Programming Interfaces}
-  \acro{URL}{Uniform Resource Locator}
  \end{acronym}
 \newpage
 
-% Falls Plural abwechend
+% Falls Plural abweichend
 \acrodefplural{VM}[VMs]{Virtuelle Maschinen}
 
 % Letzte Seite mit römischer Seitenzahl speichern & Arabische Zahlen verwenden
 \newcounter{savepage}
 \setcounter{savepage}{\number\value{page}}
 \pagenumbering{arabic}
-
 
 % ########## Text ########## %
 
@@ -723,12 +718,11 @@ Siehe im Anhang \ref{Anhang:1}
 
 \phantomsection
 \section*{Literaturverzeichnis}
-
 \addcontentsline{toc}{section}{Literaturverzeichnis}
-
+\renewcommand\refname{}
 \printbibliography
-
 \newpage
+
 % ########## Anlagen ########## %
 \phantomsection
 \section*{Anlagenverzeichnis}
