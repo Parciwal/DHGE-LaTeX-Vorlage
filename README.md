@@ -50,7 +50,7 @@ Mit Citavi kann man die Liste passend exportieren.
 Dafür sollte ein eigener Filter erstellt werden.
 "Internetdokument" muss "online" zugeordnet werden. Das muss u.U. händisch eingetragen werden.
 Außerdem muss das BiblateX package aktiviert werden.
-(siehe Bilder für Tutorial)\\
+(siehe Bilder für Tutorial)//
 ![citavi_export_1](https://github.com/user-attachments/assets/4f6653e8-03a0-4bc9-a929-ad17dcc1363d)
 ![export_2](https://github.com/user-attachments/assets/03fccbd5-e1e0-432e-8f07-464d60f9fbfc)
 ![export_3](https://github.com/user-attachments/assets/85b778fe-6535-40b5-9202-b5daadd976b7)
