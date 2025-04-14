@@ -1,16 +1,10 @@
 \ProvidesFile{custom-alphabetic-verb.bbx}%[2006/03/15 v1.0 biblatex bibliography style]
 
 % This file is based on biblatex bibliography drivers and macroses
-% Modified by S. Khirevich
-
-% =========================== Redefined drivers ==============================
-% for article, book, booklet, inbook, incollection, 
-% inproceedings, manual, phdthesis entry types
-% ============================================================================
+% Modified by T. Pätsch
 
 \RequireBibliographyStyle{alphabetic-verb}
 
- 
 \renewbibmacro*{publisher+location+date}{%
   \iflistundef{location}%
 	{\space o.O.,}
@@ -49,8 +43,24 @@
        \printfield{subtitle}{``}}%
      \newunit}%
   \printfield{titleaddon}}
+\def\finentrypunct{}
 
+\renewbibmacro*{doi+eprint+url}{%
+  \newunit\newblock
+  \iftoggle{bbx:url}
+    {\usebibmacro{url+urldate}}
+    {}}
 
+\renewbibmacro*{url+urldate}{%
+	\iffieldundef{urlyear}
+		{}
+		{\setunit*{\addspace}%
+		\usebibmacro{urldate}} %
+	\usebibmacro{url}}
+  
+
+\renewbibmacro*{url}{\printfield{url}}
+\renewbibmacro*{urldate}{\addspace Abgerufen am \printfield{urlday} \addperiod \printfield{urlmonth} \addperiod \printfield{urlyear} von:}
 
 \DeclareBibliographyDriver{book}{%
   \usebibmacro{bibindex}%
@@ -86,6 +96,7 @@
 
 \DeclareFieldFormat[article,inbook,incollection,periodical,misc,legislation,legadminmaterial,jurisdiction,inproceedings,legal]{title}{#1\isdot}
 
+
 \DeclareBibliographyDriver{article}{%
   \usebibmacro{bibindex}%
   \usebibmacro{begentry}%
@@ -115,4 +126,31 @@
   \newunit\newblock
   \usebibmacro{publisher+location+date}%
   \usebibmacro{finentry}}
+
+\DeclareBibliographyDriver{online}{%
+ \usebibmacro{bibindex}%
+  \usebibmacro{begentry}%
+  \usebibmacro{author/editor+others/translator+others}%
+  \addcolon%
+  \setunit{\printdelim{nametitledelim}}\newblock
+  \usebibmacro{title}%
+  \addcomma \newunit
+  \printlist{language}%
+  \newunit\newblock
+  \usebibmacro{byauthor}%
+  \newunit\newblock
+  \usebibmacro{byeditor+others}%
+  \newunit\newblock
+  \printfield{version}%
+  \newunit
+  \printfield{note}%
+  \newunit\newblock
+  \printlist{organization}%
+  \newunit\newblock
+  \usebibmacro{date}%
+  \addcomma \newunit\newblock
+  \usebibmacro{doi+eprint+url}%
+  \addspace%
+  \usebibmacro{finentry}}
+
 \endinput
