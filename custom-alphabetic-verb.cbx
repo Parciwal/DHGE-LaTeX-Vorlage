@@ -1,13 +1,15 @@
 \ProvidesFile{custom-alphabetic-verb.cbx}
 
 
-\ExecuteBibliographyOptions{labelalpha,autocite=inline}
+\ExecuteBibliographyOptions{autocite=inline}
 
 \renewcommand*{\iffinalcitedelim}{\iflastcitekey}
 
 \providebool{bbx:subentry}
 
 \DeclareFieldFormat{entrysetcount}{\mkbibparens{\mknumalph{#1}}}
+
+
 
 \newbibmacro*{cite}{%
   \printtext[bibhyperref]{%
@@ -28,11 +30,12 @@
     {}%
   \usebibmacro{cite}}
 
-\newbibmacro*{postnote}{%
+\renewbibmacro*{postnote}{%
   \iffieldundef{postnote}
     {}
     {\setunit{\printdelim{postnotedelim}}%
      \printfield{postnote}}}
+
 
 \DeclareCiteCommand{\cite}
   {\bibopenbracket
@@ -58,7 +61,7 @@
    \bibopenbracket
    \usebibmacro{prenote}}
   {\usebibmacro{cite}}
-  {\bibclosebracket}
+  {}
   {\bibclosebracket%
 	\usebibmacro{postnote}}
 
