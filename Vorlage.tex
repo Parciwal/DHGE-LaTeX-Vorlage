@@ -95,6 +95,13 @@ draw=black,
 fill=green!30]
 \tikzstyle{arrow} = [thick,->,>=stealth]
 
+% Bilder auf neuen seiten sind oben
+
+\makeatletter
+\setlength{\@fptop}{0pt}
+\setlength{\@fpsep}{20pt}
+\makeatother
+
 % ########## Seiten Einstellungen ########## %
 \geometry{a4paper, left=3cm, right=2cm, top=2.5cm, bottom=2.5cm}
 \setlength{\parindent}{0pt}
