@@ -32,7 +32,7 @@ latexmk -pdf DATEINAME.tex
 ## Erste Schritte und Tipps fürs Arbeiten
 
 1. Vorlage kompilieren, die erzeigte PDF ist zugleich auch die Bedienungsanleitung für die Vorlage
-2. Alle Platzhalter in Deckblatt, Sperrvermerk und ehrenwörtlicher Erklärung sollten frühzeitig entfernt werden (sonst wird es schnell peinlich)
+2. Alle Platzhalter in Deckblatt, Sperrvermerk und ehrenwörtlicher Erklärung sollten frühzeitig entfernt werden (sonst wird es schnell peinlich), für den Titel gibt es eine Sektion, der wird dann an allen nötigen Stellen automatisch eingesetzt oder ersetzt.
 3. Aktuell werden nur `Normen`, `Bücher` und `Onlinequellen` korrekt im Dokument und im Quellenverzeichnis formatiert.
 
 Viel Spaß beim schreiben 🚀
