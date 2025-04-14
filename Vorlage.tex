@@ -512,6 +512,23 @@ Abweichender Plural:                      \acp{VM}
     \label{fig:ExampleImage}
 \end{figure}
 \footnotetext{QUELLE}
+
+advanced image:
+
+\begin{figure}[!ht]
+	\centering
+	\begin{tikzonimage}[width=14cm]{example-image-b}[tsx/show help lines] %show help lines used for positioning of elements
+	
+		\draw [black, thick](0,0) rectangle (1,1); %border
+		\draw[red,ultra thick,rounded corners] (0.4,0.4) rectangle (0.999,0.4); %line on picture, other methods definetly possible
+		\draw [black, thick](0.28,0.7) rectangle node {1}  (0.32,0.8); %number on picture
+		
+	\end{tikzonimage}
+
+	\caption{adaencemage}
+	\label{fig:img}%adressable with \ref{fig:img}
+\end{figure}
+
 \newpage
 
 \subsubsection{Bilder neben Text}
