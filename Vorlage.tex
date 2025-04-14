@@ -37,9 +37,20 @@ Latex   (https://www.latex-project.org/help/documentation/)
 \usepackage[T1]{fontenc}
 \usepackage[hidelinks]{hyperref}
 \usepackage[nohyperlinks]{acronym}
-\usepackage[style=custom-alphabetic-verb, url=true, dateabbrev=false,  minalphanames=3]{biblatex}
+\usepackage[ style=custom-alphabetic-verb,dateabbrev=false, minalphanames=3, minbibnames = 3, maxbibnames=3]{biblatex} %minalphanames: Erste Buchstaben der eersten drei namen in eckige Klammer, minbibnames: erste drei Namen in bibligraphy, maxbibnames: höchstens drei Namen in Bibliography
 \usepackage{setspace, titlesec, tocloft, csquotes, fancyhdr, enumitem, pifont, footnote, arial, caption, amsmath, amssymb, amsthm, amsfonts}
 \usepackage{float, subcaption, mathptmx, ragged2e, tocbasic, scrwfile}
+
+% ########## Zitiereinstellung #########%
+
+\addbibresource{[your File.bib]}
+
+%entfernt Punkt hinter fußnote%
+\makeatletter
+\renewcommand{\bibfootnotewrapper}[1]{%
+  \bibsentence#1}
+\makeatother
+
 
 % ++++++++  Grafiken +++++++++ %
 
