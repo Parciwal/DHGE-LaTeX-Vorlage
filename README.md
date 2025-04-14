@@ -45,6 +45,8 @@ Viel Spaß beim schreiben 🚀
 
 ## Quellenformatierung mit biblatex
 
+bei jedem ändern der .bib Datei muss Biber neu ausgeführt werden.
+
 Diese Vorlage ist auf biblatex ausgelegt. 
 Mit Citavi kann man die Liste passend exportieren. 
 Dafür sollte ein eigener Filter erstellt werden.
