@@ -193,9 +193,16 @@ fill=green!30]
 % Keine Seitenzahlen auf Deckblatt und Sperrvermerk
 \pagenumbering{gobble}
 
+% ########## Titel ########## %
+% Hier Titel engeben:
+\title{Eignung eines Dateibasierten Speichersystems für eine Webapplikation für Dokumentationen}
+\makeatletter
+\let\inserttitle\@title
+\makeatother
+
 % ########## Deckblatt ########## %
 \begin{center}
-  \textbf{Meine Projektarbeit}
+  \textbf{\inserttitle}
   \vspace*{1cm}
 \end{center}
 \begin{center}
@@ -233,7 +240,7 @@ fill=green!30]
   \vspace*{1cm}
 \end{center}
 
-Die vorgelegte Projektarbeit mit dem Titel TITEL basiert auf internen, vertraulichen Daten und Informationen des Unternehmens BETRIEB.
+Die vorgelegte Projektarbeit mit dem Titel \inserttitle basiert auf internen, vertraulichen Daten und Informationen des Unternehmens BETRIEB.
 
 Diese Projektarbeit darf nur vom Erst- und Zweitgutachter sowie berechtigten Mitgliedern des Prüfungsausschusses eingesehen werden.
 Eine Vervielfältigung und Veröffentlichung der Projektarbeit ist auch auszugsweise nicht erlaubt.
@@ -244,6 +251,7 @@ Zustimmung des Verfassers und des Unternehmens.
 
 % Römische Seitenzahl
 \pagenumbering{Roman}
+
 
 % ########## Inhaltsverzeichnis ########## %
 \phantomsection
