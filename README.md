@@ -45,9 +45,7 @@ Viel Spaß beim schreiben 🚀
 
 ## Quellenformatierung mit biblatex
 
-Die `.bbx` und `.cbx` Datein sind für `BibLaTex` ausgelegt und müssen im selben Ordner wie die `.tex` Datei sein um installiert werden zu können.
-
-Wenn `biblatex` anstatt `biber` genutzt werden soll, müssen ggf. Änderungen an der Vorlage vorgenommen werden.
+Diese Vorlage ist auf biblatex ausgelegt. Mit Citavi kann man die Liste passend ausgeben. Um Online Reccourcen richtig angeben zu können, müssen sie im in der .bib datei als "@online" gekennzeichnet sein. Bei Citavi kann man dias im Exportfilter einstellen. Dort ist bei "Internetdokument" "online" einzustellen. Falls es nicht in der Liste ist, ist es mölich das händich einzugeben.
 
 ## Copyright
 
