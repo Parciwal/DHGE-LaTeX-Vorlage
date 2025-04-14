@@ -45,7 +45,16 @@ Viel Spaß beim schreiben 🚀
 
 ## Quellenformatierung mit biblatex
 
-Diese Vorlage ist auf biblatex ausgelegt. Mit Citavi kann man die Liste passend ausgeben. Um Online Reccourcen richtig angeben zu können, müssen sie im in der .bib datei als "@online" gekennzeichnet sein. Bei Citavi kann man dias im Exportfilter einstellen. Dort ist bei "Internetdokument" "online" einzustellen. Falls es nicht in der Liste ist, ist es mölich das händich einzugeben.
+Diese Vorlage ist auf biblatex ausgelegt. 
+Mit Citavi kann man die Liste passend exportieren. 
+Dafür sollte ein eigener Filter erstellt werden.
+"Internetdokument" muss "online" zugeordnet werden. Das muss u.U. händisch eingetragen werden.
+Außerdem muss das BiblateX package aktiviert werden.
+(siehe Bilder für Tutorial)
+![citavi_export_1](https://github.com/user-attachments/assets/4f6653e8-03a0-4bc9-a929-ad17dcc1363d)
+![export_2](https://github.com/user-attachments/assets/03fccbd5-e1e0-432e-8f07-464d60f9fbfc)
+![export_3](https://github.com/user-attachments/assets/85b778fe-6535-40b5-9202-b5daadd976b7)
+![export_4](https://github.com/user-attachments/assets/a87fca92-0959-4fc1-a0f0-a48cfe256f6b)
 
 ## Copyright
 
