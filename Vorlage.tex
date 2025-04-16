@@ -38,7 +38,7 @@ Latex   (https://www.latex-project.org/help/documentation/)
 \usepackage[hidelinks]{hyperref}
 \usepackage[nohyperlinks]{acronym}
 \usepackage[ style=custom-alphabetic-verb,dateabbrev=false, minalphanames=3, minbibnames = 3, maxbibnames=3]{biblatex} %minalphanames: Erste Buchstaben der eersten drei namen in eckige Klammer, minbibnames: erste drei Namen in bibligraphy, maxbibnames: höchstens drei Namen in Bibliography
-\usepackage{setspace, titlesec, tocloft, csquotes, fancyhdr, enumitem, pifont, footnote, arial, caption, amsmath, amssymb, amsthm, amsfonts}
+\usepackage{setspace, titlesec, tocloft, csquotes, fancyhdr, enumitem, pifont, footnote, arial, caption, amsmath, amssymb, amsthm, amsfonts, floatbytocbasic}
 \usepackage{float, subcaption, mathptmx, ragged2e, tocbasic, scrwfile}
 
 % ########## Zitiereinstellung #########%
@@ -193,6 +193,17 @@ fill=green!30]
 \setlength{\cftsubsubsecnumwidth}{50px}
 \setlength{\cftsubsubsecindent}{0px}
 
+% ########## Anlagenverzeichnis Setup ########## %
+
+\newcommand{\anlagenname}{anlage}
+\newfloat{anlage}{!ht}{an}
+\newcommand{\listofanlagenname}{Anlagenverzeichnis}
+\newcommand{\listofanlagen}{%
+  \listof{anlage}{\listofanlagenname}%
+}
+\floatname{anlage}{Anlage}
+\crefname{Anlage}{anlage}{anlagen}
+\Crefname{Anlage}{Anlage}{Anlagen}
 
 % ########## Dokument Beginn ########## %
 \begin{document}
@@ -693,27 +704,16 @@ Siehe im Anhang \ref{Anhang:1}
 
 % ########## Anlagen ########## %
 \phantomsection
-\section*{Anlagenverzeichnis}
-\addcontentsline{toc}{section}{Anlagenverzeichnis}
-\captionsetup[figure]{list=no}
-\setcounter{figure}{0}
-\renewcommand{\figurename}{Anhang}
-\renewcommand{\thefigure}{\arabic{figure}}
-
-% Anlagenverzeichnis (muss manuell geführt werden)
-\renewcommand\tabularxcolumn[1]{b{#1}}
-\renewcommand*{\arraystretch}{1.5}
-\begin{tabularx}{\textwidth}{Xr}
-\multicolumn{2}{c}{}\\
-Anhang 1: \nameref{Anhang:1} \dotfill&\pageref{Anhang:1}\\
-Anhang 2: \nameref{Anhang:2} \dotfill&\pageref{Anhang:2}\\
-Anhang 3: \nameref{Anhang:3} \dotfill&\pageref{Anhang:3}\\
-\end{tabularx}
+% Anlagenverzeichnis
+\setlength{\cftfigindent}{0em}
+\setlength{\cftfignumwidth}{6em}
+\renewcommand{\cftfigpresnum}{Anlage }
+\listofanlagen
 \newpage
 
 % ########## Anlage 1 ########## %
 
-\begin{figure}[!ht]
+\begin{anlage}[!ht]
   \caption[Titel im Anlagenverzeichnis Anlage 1]{Titel Anlage 1}
   \label{Anhang:1}
   \centering
@@ -724,23 +724,23 @@ Anhang 3: \nameref{Anhang:3} \dotfill&\pageref{Anhang:3}\\
 % ########## Anlage 2 ########## %
 
 \begin{landscape}
-  \begin{figure}[!ht]
+  \begin{anlage}[!ht]
     \caption[Titel im Anlagenverzeichnis Anlage 2]{Titel Anlage 2}
     \label{Anhang:2}
     \centering
     \frame{\includegraphics[width=1.2\textwidth]{example-image-a}}
-  \end{figure}
+  \end{anlage}
   \end{landscape}
   \newpage
 
 % ########## Anlage 3 ########## %
 
-\begin{figure}[!ht]
+\begin{anlage}[!ht]
   \caption[Titel im Anlagenverzeichnis Anlage 3]{Titel Anlage 3}
   \label{Anhang:3}
   \centering
   \frame{\includegraphics[angle=-90, width=\textwidth]{example-image-a}}
-\end{figure}
+\end{anlage}
 \newpage
 
 % ########## Ehrenwörtliche Erklärung ########## %
